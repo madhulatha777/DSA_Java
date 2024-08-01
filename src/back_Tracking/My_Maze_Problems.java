@@ -6,14 +6,30 @@ import java.util.List;
 public class My_Maze_Problems {
 
     public static void main(String[] args) {
-        System.out.println(path("",0,0));
-        System.out.println(count(3,3));
-        System.out.println(pathcount(3,3));
-        pathP("",3,3);
-        System.out.println(pathRet("",3,3));
-        pathDiagonal("",3,3);
-        System.out.println(pathDiagonalRet("",3,3));
-        System.out.println(pathDiagonalCount("",3,3));
+//        System.out.println(path("",0,0));
+//        System.out.println(count(3,3));
+//        System.out.println(pathcount(3,3));
+//        pathP("",3,3);
+//        System.out.println(pathRet("",3,3));
+//        pathDiagonal("",3,3);
+//        System.out.println(pathDiagonalRet("",3,3));
+//        System.out.println(pathDiagonalCount("",3,3));
+
+        boolean[][] boat = {
+                {true,true,true},
+                {true,false,true},
+                {true,true,true}
+        };
+        pathRestrictions("",boat,0,0);
+
+
+        char[][] alphgame = {
+                {'a','b','c'},
+                {'@','s','f'},
+                {'g','h','i'}
+        };
+        pathMyRestrictions("",alphgame,0,0);
+
     }
 
 
@@ -144,6 +160,46 @@ public class My_Maze_Problems {
         }
         return count;
     }
+
+    static  void pathRestrictions(String p,boolean[][]  maze, int r,int c){
+
+        if (r == maze.length-1  && c == maze[0].length-1){
+            System.out.println(p);
+            return;
+        }
+        if(!maze[r][c]){
+            return;
+        }
+        if(r < maze.length-1){
+            pathRestrictions(p + 'D',maze,r+1,c);
+        }
+        if(c < maze[0].length-1){
+            pathRestrictions(p + 'R',maze,r,c+1);
+        }
+    }
+
+    static  void pathMyRestrictions(String p,char[][]  maze, int r,int c){
+
+        if (r == maze.length-1  && c == maze[0].length-1){
+            System.out.println(p);
+            return;
+        }
+        if(maze[r][c] == '@'){
+            return;
+        }
+        if(r < maze.length-1){
+            pathMyRestrictions(p + 'D',maze,r+1,c);
+        }
+        if(c < maze[0].length-1){
+            pathMyRestrictions(p + 'R',maze,r,c+1);
+        }
+        if(r < maze.length-1 && c < maze[0].length-1){
+            pathMyRestrictions(p + 'X',maze,r+1,c+1);
+        }
+    }
+
+
+
 
 }
 
