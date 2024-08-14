@@ -3,7 +3,7 @@ package N_Queens_Knights_Sudoku_leetCode;
 
 public class N_Queens {
     public static void main(String[] args) {
-        int n = 4;
+        int n = 5;
         boolean[][] board = new boolean[n][n];
         System.out.println(PlaceQueen(board,0));
     }
